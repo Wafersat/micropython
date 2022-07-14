@@ -74,6 +74,7 @@ function ci_stm32_pyb_build {
     make ${MAKEOPTS} -C ports/stm32 submodules
     git submodule update --init lib/btstack
     git submodule update --init lib/mynewt-nimble
+    git submodule update --init ports/stm32/boards/STM32F429_Wafersat
     make ${MAKEOPTS} -C ports/stm32 BOARD=STM32F429_Wafersat
 
     # Test building native .mpy with armv7emsp architecture.
