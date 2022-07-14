@@ -17,7 +17,14 @@ jobs:
   build_pyb:
     runs-on: ubuntu-20.04
     steps:
+    - uses: shaunco/ssh-agent@git-repo-mapping
+      with:
+        ssh-private-key: ${{ secrets.SUBMODULE_SSH_PRIVATE_KEY}}
+        repo-mappings: github.com/Wafersat/STM32F429_Wafersat
+        
     - uses: actions/checkout@v2
+      with:
+        submodules: recursive
     - name: Install packages
       run: source tools/wafersat_ci.sh && ci_stm32_setup
     - name: Build
